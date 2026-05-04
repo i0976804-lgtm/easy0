@@ -9,6 +9,11 @@
     <!-- Google Fonts (럭셔리 브랜드 감성의 세리프 폰트) -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* --- 부드러운 스크롤 적용 (Discover 버튼 클릭 시 자연스러운 이동) --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* 폰트 설정 */
         body {
             font-family: 'Lato', sans-serif;
@@ -34,6 +39,22 @@
         .logo-invert {
             filter: invert(1);
         }
+
+        /* --- 스크롤 애니메이션 클래스 추가 --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* 요소들이 순차적으로 나타나게 하는 딜레이 */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
     </style>
 </head>
 <body class="antialiased">
@@ -90,8 +111,11 @@
 
     <!-- 메인 히어로 배너 -->
     <section class="relative w-full h-[85vh] bg-black">
-        <img src="hero-model.png" alt="Campaign Model" class="w-full h-full object-cover opacity-80">
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+        <!-- 기존 이미지 대신 동영상 배경 추가 -->
+        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 pointer-events-none">
+            <source src="model.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 fade-in-up">
             <h2 class="text-white text-sm md:text-base tracking-[0.3em] uppercase mb-4 font-light">The New Collection</h2>
             <h1 class="text-white text-4xl md:text-6xl lg:text-7xl serif-font mb-8 drop-shadow-lg">A Strategic Beauty Move</h1>
             <a href="#collection" class="px-8 py-3 bg-white text-black text-xs tracking-widest uppercase hover:bg-gray-200 transition-colors duration-300">
@@ -102,14 +126,14 @@
 
     <!-- 베스트셀러 / 컬렉션 제품 그리드 -->
     <section id="collection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 fade-in-up">
             <h2 class="text-3xl md:text-4xl serif-font mb-4">The Nocturnal Collection</h2>
             <p class="text-gray-500 text-sm tracking-widest uppercase">Master your makeup strategy</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             <!-- 제품 1 -->
-            <div class="group cursor-pointer flex flex-col text-center">
+            <div class="group cursor-pointer flex flex-col text-center fade-in-up delay-100">
                 <div class="w-full aspect-square bg-[#f8f8f8] mb-6 flex items-center justify-center img-hover-zoom">
                     <img src="lipgloss.png" alt="Requiem Lip Gloss" class="w-full h-full object-cover mix-blend-multiply">
                 </div>
@@ -119,7 +143,7 @@
             </div>
 
             <!-- 제품 2 -->
-            <div class="group cursor-pointer flex flex-col text-center">
+            <div class="group cursor-pointer flex flex-col text-center fade-in-up delay-200">
                 <div class="w-full aspect-square bg-[#f8f8f8] mb-6 flex items-center justify-center img-hover-zoom">
                     <img src="palette.png" alt="Nocturnal Palette" class="w-full h-full object-cover mix-blend-multiply">
                 </div>
@@ -129,7 +153,7 @@
             </div>
 
             <!-- 제품 3 -->
-            <div class="group cursor-pointer flex flex-col text-center">
+            <div class="group cursor-pointer flex flex-col text-center fade-in-up delay-300">
                 <div class="w-full aspect-square bg-[#f8f8f8] mb-6 flex items-center justify-center img-hover-zoom">
                     <img src="tin.jpg" alt="Aurora Pink Tint" class="w-full h-full object-cover mix-blend-multiply">
                 </div>
@@ -139,7 +163,7 @@
             </div>
 
             <!-- 제품 4 -->
-            <div class="group cursor-pointer flex flex-col text-center">
+            <div class="group cursor-pointer flex flex-col text-center fade-in-up delay-400">
                 <div class="w-full aspect-square bg-[#f8f8f8] mb-6 flex items-center justify-center img-hover-zoom">
                     <img src="highlighter.png" alt="Queen Highlighter" class="w-full h-full object-contain p-4 mix-blend-multiply">
                 </div>
@@ -154,10 +178,10 @@
     <section class="w-full bg-[#fafafa]">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2">
-                <div class="h-[50vh] lg:h-auto">
+                <div class="h-[50vh] lg:h-auto fade-in-up">
                     <img src="checkmate.png" alt="Checkmate Concept" class="w-full h-full object-cover grayscale">
                 </div>
-                <div class="flex flex-col justify-center px-8 py-20 lg:p-24 text-center lg:text-left">
+                <div class="flex flex-col justify-center px-8 py-20 lg:p-24 text-center lg:text-left fade-in-up delay-200">
                     <h2 class="text-3xl md:text-5xl serif-font mb-6 leading-tight">Checkmate.<br>Rewrite the Rules.</h2>
                     <p class="text-gray-600 mb-8 font-light leading-relaxed">
                         우아함 속의 대담함. 체스판 위 가장 강력한 말들처럼, 당신의 메이크업은 당신이 가진 전략 중 가장 매혹적인 무기가 됩니다. 정교하게 세공된 패키지와 독보적인 텍스처로 완성된 NOCTURNAL 컬렉션을 경험해보세요.
@@ -181,7 +205,7 @@
     <!-- 메이크업 튜토리얼 / 룩 섹션 -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div class="flex flex-col md:flex-row items-center gap-12">
-            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
+            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left fade-in-up">
                 <h2 class="text-3xl md:text-4xl serif-font mb-4">The Queen's Gambit Look</h2>
                 <p class="text-gray-600 mb-8 font-light leading-relaxed">
                     입술 위에 미끄러지듯 스며드는 블랙 글리터의 매혹적인 반짝임. 평범함을 거부하는 당신을 위한 궁극의 스모키 룩을 제안합니다. 단 한 번의 터치로 압도적인 존재감을 발산하세요.
@@ -190,7 +214,7 @@
                     <a href="#" class="px-8 py-3 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-800 transition-colors duration-300">Shop The Look</a>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 img-hover-zoom">
+            <div class="w-full md:w-1/2 img-hover-zoom fade-in-up delay-200">
                 <img src="tutorial.png" alt="Applying Tint" class="w-full h-auto object-cover">
             </div>
         </div>
@@ -250,5 +274,29 @@
         </div>
     </footer>
 
+    <!-- 스크롤 애니메이션 작동 스크립트 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 화면에 요소가 15% 정도 보일 때 애니메이션 시작
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // 한 번 올라오면 상태 유지
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach((elem) => {
+                observer.observe(elem);
+            });
+        });
+    </script>
 </body>
 </html>
